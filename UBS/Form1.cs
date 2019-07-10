@@ -25,11 +25,19 @@ namespace UBS
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            //string pathFile = @"c:\movie.json";
-            string pathFile = @"C:\UBS\MOCK_DATA_1.json";
-            List<PersonDTO> person = JsonConvert.DeserializeObject<List<PersonDTO>>(File.ReadAllText(pathFile));
+            string pathFile = @"C:\UBS\DATA.json";
+            if (File.Exists(pathFile))
+            {
+                List<PersonDTO> person = JsonConvert.DeserializeObject<List<PersonDTO>>(File.ReadAllText(pathFile));
+                this.dataGridView1.DataSource = person;
+            }
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            
         }
     }
 }
