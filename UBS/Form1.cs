@@ -15,6 +15,9 @@ namespace UBS
 {
     public partial class Form1 : Form
     {
+        public string pathFile = @"C:\UBS\DATA.json";
+        public DateTime lastChangeDataFile;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,16 +25,28 @@ namespace UBS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.LoadJson();
+        }
+
+        private void LoadJson()
+        {
+            if (File.Exists(this.pathFile))
+            {
+                this.lastChangeDataFile = File.GetLastWriteTime(this.pathFile);
+                List<PersonDTO> person = JsonConvert.DeserializeObject<List<PersonDTO>>(File.ReadAllText(this.pathFile));
+                this.dataGridView1.DataSource = person;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            string pathFile = @"C:\UBS\DATA.json";
-            if (File.Exists(pathFile))
+            if (File.Exists(this.pathFile))
             {
-                List<PersonDTO> person = JsonConvert.DeserializeObject<List<PersonDTO>>(File.ReadAllText(pathFile));
-                this.dataGridView1.DataSource = person;
+                if (File.GetLastWriteTime(this.pathFile) != this.lastChangeDataFile)
+                {
+                    this.lastChangeDataFile = File.GetLastWriteTime(this.pathFile);
+                    this.LoadJson();
+                }
             }
         }
 
