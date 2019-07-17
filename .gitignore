@@ -10,5 +10,6 @@ UBS/obj/Debug/UBS.csprojResolveAssemblyReference.cache
 .vs/UBS/v15/.suo
 
 
+.vs/UBS/bin/*.*
 UBS/obj/Debug/*.*
 .vs/*.*
