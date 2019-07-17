@@ -9,6 +9,10 @@ UBS/obj/Debug/UBS.pdb
 UBS/obj/Debug/UBS.csprojResolveAssemblyReference.cache
 .vs/UBS/v15/.suo
 
+UBS/bin/
+UBS/bin/*.*
+.vs/UBS/
+.vs/UBS/*.*
 .vs/UBS/bin/
 .vs/UBS/bin/*.*
 UBS/obj/Debug/*.*
